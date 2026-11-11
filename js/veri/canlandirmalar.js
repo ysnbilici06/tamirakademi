@@ -68,4 +68,41 @@
       ]
     }
   };
+
+  // Gerçek ürün fotoğrafları: her kare için [dosya adı, alternatif metin] (null = sadece şema)
+  var FOTOLAR = {
+    'ekran-acma': [
+      ['iphone4-parcalar', 'Sökülmüş bir iPhone 4\'ün tüm parçaları'],
+      ['isi-tabancasi', 'Sıcak hava tabancası'],
+      ['ekran-acma', 'Ekranı kaldırılan bir iPhone 6s'],
+      ['ekran-acma', 'Ekranı kaldırılan bir iPhone 6s'],
+      null,
+      ['iphone6s-acik', 'Kitap gibi açılmış iPhone 6s: solda ekran, sağda kasa'],
+      ['iphone5s-ic', 'Ekranı çıkarılmış iPhone 5s; batarya ve konnektörler görünüyor']
+    ],
+    'konnektor': [
+      ['konnektorler', 'iPhone 6 anakartındaki flex konnektörleri'],
+      ['spudger', 'Plastik spudger'],
+      null,
+      ['konnektorler', 'iPhone 6 anakartındaki flex konnektörleri']
+    ],
+    'lehim': [
+      ['havya-kalay', 'Havya ucunun kalaylanması'],
+      ['flux', 'Sıvı SMD flux şişesi'],
+      null,
+      null
+    ],
+    'batarya-degisim': [
+      ['iphone5s-ic', 'iPhone 5s içinde yapışkanla tutturulmuş batarya'],
+      ['iphone6s-acik', 'iPhone 6s bataryası ve alt kenardaki çekme bantları'],
+      null,
+      null
+    ]
+  };
+  Object.keys(FOTOLAR).forEach(function (ad) {
+    FOTOLAR[ad].forEach(function (f, i) {
+      var kare = TA.canlandirmalar[ad].kareler[i];
+      if (f && kare) { kare.foto = f[0]; kare.fotoAlt = f[1]; }
+    });
+  });
 })();

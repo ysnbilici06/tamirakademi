@@ -17,6 +17,8 @@ TA.icerik.ileri = {
   </tbody>
 </table></div>
 
+<div data-bilesen="foto" data-ad="multimetre" data-alt="Dijital multimetre" data-aciklama="Dijital multimetre. Telefon tamiri için diyot modu ve sesli süreklilik testi olan bir model seç."></div>
+
 <h2>Sanal multimetreyle dene</h2>
 <p>Bir mod seç ve probları farklı noktalara "değdir". Değerleri ve açıklamaları incele.</p>
 <div data-bilesen="multimetre"></div>

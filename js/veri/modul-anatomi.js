@@ -33,6 +33,8 @@ TA.icerik.anatomi = {
 <p><strong>Cihazı açmadan önce yapıyı öğren:</strong> Modelin adını ve "teardown" kelimesini arat. Söküm fotoğraflarına göz atmak, yanlış taraftan açmaya çalışıp ekranı kırmanın önüne geçer.</p>
 </div></div>
 
+<div data-bilesen="foto" data-ad="iphone4-parcalar" data-alt="Tüm parçalarına ayrılmış bir iPhone 4" data-aciklama="Parçalarına ayrılmış bir iPhone 4: ekran, kasa, anakart, batarya, kameralar ve onlarca küçük parça."></div>
+
 <h2>Ana parçalar</h2>
 <ul>
   <li><strong>Anakart:</strong> İşlemci, bellek ve bütün kontrol devreleri</li>
@@ -52,6 +54,8 @@ TA.icerik.anatomi = {
 <p>Anakart, cihazın her şeyi yöneten ana devresidir. Üzerinde yüzlerce küçük parça bulunur. Bunların hepsini ezberlemen gerekmez, ama ana bölümleri ve görevlerini bilmek teşhisin temelidir.</p>
 
 <div data-bilesen="anakart"></div>
+
+<div data-bilesen="foto" data-ad="anakart" data-alt="iPhone 3G anakartı" data-aciklama="Gerçek bir anakart (iPhone 3G): Kenarlarda konnektörler, ortada kalkanlar ve ana çipler görülüyor."></div>
 
 <h2>Katmanlı yapı</h2>
 <p>Telefon anakartları 8-12 katmanlı baskılı devrelerdir. Bazı üst seviye modellerde iki kart üst üste lehimlenir ("sandviç anakart"). Bu sayede yerden kazanılır, ama tamir zorlaşır.</p>
@@ -115,6 +119,8 @@ TA.icerik.anatomi = {
 <h2>Flex kablolar</h2>
 <p>Flex kablolar, ince plastik bir film üzerine basılmış esnek devrelerdir. Esnektirler ama <strong>kırılgandırlar</strong>: Keskin katlanmaya, çekmeye ve ısıya hassastırlar.</p>
 <div data-bilesen="canlandirma" data-ad="konnektor"></div>
+
+<div data-bilesen="foto" data-ad="konnektorler" data-alt="iPhone 6 anakartı üzerindeki flex konnektörleri yakından" data-aciklama="Anakart üzerindeki flex konnektörleri. Her biri milimetrik pinlerden oluşur."></div>
 
 <h2>Kameralar</h2>
 <p>Kameralar konnektörle takılan modüllerdir. Ana kamerada genelde <strong>OIS</strong> (optik görüntü sabitleme) bulunur. Kamera sallanınca "tıkırdama" sesi gelmesi çoğu zaman normaldir: OIS mıknatısları cihaz kapalıyken serbest kalır.</p>

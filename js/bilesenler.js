@@ -283,8 +283,10 @@
     var sahne = kok.querySelector('.cn-sahne'), metin = kok.querySelector('.cn-metin'), oynat = kok.querySelector('[data-cn="oynat"]');
     function goster() {
       var k = c.kareler[i];
-      sahne.innerHTML = k.svg; metin.innerHTML = '<b>Adım ' + (i + 1) + '/' + c.kareler.length + ':</b> ' + k.metin;
-      sahne.firstChild && sahne.firstChild.classList && sahne.firstChild.classList.add('cn-gir');
+      sahne.classList.toggle('cn-ikili', !!k.foto);
+      sahne.innerHTML = (k.foto ? TA.fotoHTML(k.foto, k.fotoAlt || '', '', 'cn-foto') : '') + '<div class="cn-cizim">' + k.svg + '</div>';
+      metin.innerHTML = '<b>Adım ' + (i + 1) + '/' + c.kareler.length + ':</b> ' + k.metin;
+      sahne.querySelectorAll('.cn-cizim, .cn-foto').forEach(function (x) { x.classList.add('cn-gir'); });
       kok.querySelectorAll('.cn-noktalar span').forEach(function (s, k2) { s.classList.toggle('aktif', k2 === i); });
     }
     function dur() { clearInterval(zamanlayici); zamanlayici = null; oynat.textContent = '▶ Oynat'; }
@@ -326,7 +328,21 @@
     });
   }
 
-  var KURUCULAR = { teshis: teshisKur, anakart: anakartKur, multimetre: multimetreKur, canlandirma: canlandirmaKur, video: videoKur };
+  // =====================================================================
+  // 6) FOTOĞRAF (yerel, kaynak bilgisiyle): <div data-bilesen="foto" data-ad="spudger" data-alt="..." data-aciklama="..."></div>
+  // =====================================================================
+  TA.fotoHTML = function (ad, alt, aciklama, sinif) {
+    var k = (TA.fotoKaynak || {})[ad] || {};
+    var kredi = k.yazar ? 'Foto: ' + kacis(k.yazar) + ' · <a href="' + kacis(k.kaynak) + '" target="_blank" rel="noopener">' + kacis(k.lisans) + '</a>' : '';
+    return '<figure class="foto ' + (sinif || '') + '"><img src="foto/' + ad + '.jpg" alt="' + kacis(alt) + '" loading="lazy"' +
+      (k.en ? ' width="' + k.en + '" height="' + k.boy + '"' : '') + '>' +
+      '<figcaption>' + (aciklama ? '<span>' + kacis(aciklama) + '</span>' : '') + '<small class="kredi">' + kredi + '</small></figcaption></figure>';
+  };
+  function fotoKur(kok) {
+    kok.outerHTML = TA.fotoHTML(kok.getAttribute('data-ad'), kok.getAttribute('data-alt') || '', kok.getAttribute('data-aciklama') || '');
+  }
+
+  var KURUCULAR = { foto: fotoKur, teshis: teshisKur, anakart: anakartKur, multimetre: multimetreKur, canlandirma: canlandirmaKur, video: videoKur };
   TA.bilesenKur = function (kok) {
     kok.querySelectorAll('[data-bilesen]').forEach(function (d) {
       var f = KURUCULAR[d.getAttribute('data-bilesen')];

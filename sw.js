@@ -1,6 +1,6 @@
 // Çevrimdışı çalışma: uygulama dosyalarını önbelleğe alır.
 // İçerik güncellendiğinde SURUM değerini artır; telefonlar yeni sürümü indirir.
-var SURUM = 'ta-v2';
+var SURUM = 'ta-v3';
 var DOSYALAR = [
   './',
   'index.html',
@@ -18,12 +18,19 @@ var DOSYALAR = [
   'js/veri/modul-meslek.js',
   'js/veri/canlandirmalar.js',
   'js/veri/sozluk.js',
+  'js/veri/foto-kaynaklari.js',
+  'js/veri/markalar.js',
+  'js/veri/yazilim-alani.js',
+  'foto/sisik-batarya.jpg', 'foto/isi-tabancasi.jpg', 'foto/anakart.jpg', 'foto/iphone5s-ic.jpg',
+  'foto/iphone6s-acik.jpg', 'foto/ekran-acma.jpg', 'foto/konnektorler.jpg', 'foto/spudger.jpg',
+  'foto/havya-kalay.jpg', 'foto/multimetre.jpg', 'foto/kurs-afisi.jpg', 'foto/flux.jpg', 'foto/iphone4-parcalar.jpg',
   'js/bilesenler.js',
   'ikonlar/ikon-192.png',
   'ikonlar/ikon-512.png',
   'ikonlar/ikon-maskable-512.png',
   'ikonlar/apple-touch-icon.png',
-  'ikonlar/favicon-32.png'
+  'ikonlar/favicon-32.png',
+  'ikonlar/logo.svg'
 ];
 
 self.addEventListener('install', function (e) {

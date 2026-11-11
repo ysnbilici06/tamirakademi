@@ -19,10 +19,13 @@ Scripts load in order from `index.html`, sharing one global namespace `window.TA
 
 1. `js/veri/moduller.js` defines `TA.moduller` (the 8-module catalog: `id`, `no`, `baslik`, `ozet`) and an empty `TA.icerik`.
 2. `js/veri/modul-<id>.js` files (all 8 exist) each register content as `TA.icerik[<id>] = { dersler: [...], quiz: [...] }`.
-3. `js/veri/canlandirmalar.js` (`TA.canlandirmalar`: step-by-step SVG animations) and `js/veri/sozluk.js` (`TA.sozluk` glossary, `TA.bilgiler` "did you know" facts).
-4. `js/bilesenler.js` defines `TA.bilesenKur(root)`, which mounts interactive widgets placed in lesson HTML as `<div data-bilesen="teshis|anakart|multimetre|canlandirma|video" ...>` (`canlandirma` takes `data-ad`, `video` takes `data-youtube`). The diagnosis-wizard tree (`T`), board parts and multimeter readings live in this file.
-5. `js/app.js` is an IIFE that renders everything into `<main id="uygulama">` as HTML strings, routed by `location.hash`:
-   `#/` home · `#/modul/<mid>` · `#/ders/<mid>/<did>` · `#/quiz/<mid>` · `#/final` · `#/sertifika` · `#/araclar` · `#/arac/<ad>` · `#/sozluk` · `#/hakkinda`.
+3. `js/veri/markalar.js` (`TA.markalar` Samsung/Apple brand pages, `TA.markaNotlari['<mid>/<did>'] = { samsung, apple }` shown at the end of every lesson; viewer's brand filter in `localStorage['ta-marka']`), `js/veri/yazilim-alani.js` (`TA.yazilimAlani.android|ios`), `js/veri/foto-kaynaklari.js` (`TA.fotoKaynak`: credits for photos in `foto/`, all from Wikimedia Commons under free licenses; add credits for any new photo, they are listed on `#/hakkinda`). Photos are embedded with `<div data-bilesen="foto" data-ad="<file without .jpg>" ...>` or as `foto` on animation frames.
+4. `js/veri/canlandirmalar.js` (`TA.canlandirmalar`: step-by-step SVG animations) and `js/veri/sozluk.js` (`TA.sozluk` glossary, `TA.bilgiler` "did you know" facts).
+5. `js/bilesenler.js` defines `TA.bilesenKur(root)`, which mounts interactive widgets placed in lesson HTML as `<div data-bilesen="teshis|anakart|multimetre|canlandirma|video" ...>` (`canlandirma` takes `data-ad`, `video` takes `data-youtube`). The diagnosis-wizard tree (`T`), board parts and multimeter readings live in this file.
+6. `js/app.js` is an IIFE that renders everything into `<main id="uygulama">` as HTML strings, routed by `location.hash`:
+   `#/` home · `#/modul/<mid>` · `#/ders/<mid>/<did>` · `#/quiz/<mid>` · `#/final` · `#/sertifika` · `#/araclar` · `#/arac/<ad>` · `#/sozluk` · `#/markalar` · `#/marka/<samsung|apple>` · `#/yazilim[/android|/ios]` · `#/hakkinda`.
+
+Desktop build: `masaustu/tamir_akademisi.py` wraps the site in pywebview (WebView2, fixed local port 47823 so localStorage persists, storage in `%APPDATA%\TamirAkademisi`); `python masaustu/derle.py` builds `masaustu/dist/TamirAkademisi.exe` (its `WEB_DOSYALARI` list must include every top-level web folder). Rebuild the exe after content changes. Logo source is `ikonlar/logo.svg`; the PNG icons are rendered from it.
 
 Completion rules: a module is complete when all its lessons are done and its quiz best score is ≥ 70% (`GECME_MODUL`). The final exam (20 random questions from all module quizzes, `GECME_FINAL` 75%) unlocks when all modules are complete; passing it unlocks the certificate (SVG, downloadable as PNG or printed as A4 landscape). Certificate number is a hash of name + final-pass date.
 

@@ -14,6 +14,8 @@ TA.icerik.tamirler = {
     <tr><th>Risk</th><td>Flex kesme, OLED'i ısıyla yakma, ön kamera ve sensör hizalama</td></tr>
   </tbody>
 </table></div>
+<div data-bilesen="foto" data-ad="iphone6s-acik" data-alt="Ekranı kitap gibi açılmış iPhone 6s" data-aciklama="Ekrandan açılan bir iPhone: Ekran solda, kasa ve anakart sağda. Ekran flex'leri sağ üst köşedeki braketin altından bağlanır."></div>
+
 <h2>Adımlar</h2>
 <ol class="adimlar">
   <li>Cihazı kapat, varsa alt vidaları sök.</li>

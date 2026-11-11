@@ -13,7 +13,7 @@ from PIL import Image
 
 BURASI = os.path.dirname(os.path.abspath(__file__))
 PROJE = os.path.dirname(BURASI)
-WEB_DOSYALARI = ["index.html", "manifest.webmanifest", "sw.js", "css", "js", "ikonlar"]
+WEB_DOSYALARI = ["index.html", "manifest.webmanifest", "sw.js", "css", "js", "ikonlar", "foto"]
 
 
 def main():

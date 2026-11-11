@@ -123,6 +123,13 @@
           '<small class="modul-sira">Modül ' + m.no + '</small><h3>' + kacis(m.baslik) + '</h3><p>' + kacis(m.ozet) + '</p>' + cubuk(d.yuzde) + '</a>';
       }).join('') + '</div>' +
 
+      '<h2 class="bolum-baslik">Markana özel eğitim</h2>' +
+      '<div class="marka-izgara kucuk">' +
+        '<a class="kart marka-kart samsung" href="#/marka/samsung">' + MARKA_LOGO.samsung + '<h3>Samsung bölümü</h3><p>Arkadan açılış, kasalı ekran servis paketi, Bakım modu, Knox ve sık arızalar.</p></a>' +
+        '<a class="kart marka-kart apple" href="#/marka/apple">' + MARKA_LOGO.apple + '<h3>Apple bölümü</h3><p>Pentalobe vidalar, parça eşleme, Face ID, sandviç anakart ve bilinen arızalar.</p></a>' +
+        '<a class="kart marka-kart os-android" href="#/yazilim"><span class="os-ikon">🤖 ' + MARKA_LOGO.apple + '</span><h3>Android / iOS yazılım</h3><p>Kurtarma modları, resmî yazılım yükleme, güvenli mod, DFU ve hesap kilitleri.</p></a>' +
+      '</div>' +
+
       '<h2 class="bolum-baslik">Atölye araçları</h2>' + aracKartlari() +
 
       '<a class="kart sertifika-cta" href="#/sertifika"><div class="sertifika-mini">' + sertifikaSVG('Adın Soyadın', '—', 'TA-XXXX-XXXX', true) + '</div>' +
@@ -151,6 +158,72 @@
     return '<div class="arac-izgara">' + araclar.map(function (a) {
       return '<a class="kart arac-kart" href="' + (a[0] === 'sozluk' ? '#/sozluk' : '#/arac/' + a[0]) + '"><span class="arac-ikon">' + a[1] + '</span><h3>' + a[2] + '</h3><p>' + a[3] + '</p></a>';
     }).join('') + '</div>';
+  }
+
+  // ---------- MARKA TERCİHİ ----------
+  function markaOku() { try { return localStorage.getItem('ta-marka') || ''; } catch (e) { return ''; } }
+  function markaYaz(m) { try { localStorage.setItem('ta-marka', m); } catch (e) {} }
+  var MARKA_LOGO = {
+    samsung: '<span class="marka-logo samsung">SAMSUNG</span>',
+    apple: '<span class="marka-logo apple"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M16.4 12.6c0-2.4 2-3.6 2.1-3.6-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.8-1.6 0-3.1 1-4 2.4-1.7 3-.4 7.3 1.2 9.7.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8 1.5 0 1.9.8 3.2.8 1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8 0 0-2.5-1-2.5-3.9zM14 5.5c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1 .1 2.1-.6 2.8-1.4z"/></svg>Apple</span>'
+  };
+  function markaSecici(sinif) {
+    var m = markaOku();
+    return '<div class="marka-secici ' + (sinif || '') + '" role="radiogroup" aria-label="Marka tercihi">' +
+      [['', 'Hepsi'], ['samsung', 'Samsung'], ['apple', 'Apple']].map(function (x) {
+        return '<button type="button" role="radio" aria-checked="' + (m === x[0]) + '" data-marka-sec="' + x[0] + '">' + x[1] + '</button>';
+      }).join('') + '</div>';
+  }
+  function markaKart(mid, did) {
+    var n = TA.markaNotlari && TA.markaNotlari[mid + '/' + did];
+    if (!n) return '';
+    var m = markaOku(), goster = m ? [m] : ['samsung', 'apple'];
+    return '<section class="marka-notlari"><div class="marka-notlari-ust"><h2>Markaya özel notlar</h2>' + markaSecici('kucuk') + '</div>' +
+      goster.map(function (k) {
+        return '<div class="marka-not ' + k + '"><div class="marka-not-baslik">' + MARKA_LOGO[k] + '</div><p>' + n[k] + '</p></div>';
+      }).join('') + '</section>';
+  }
+
+  function markalarSayfasi() {
+    var m = markaOku();
+    return ekmek([['Markalar']]) + '<h1>Samsung ve Apple</h1>' +
+      '<p class="soluk">Türkiye\'de servise en çok gelen iki marka. Kendi bölümleri var. Ayrıca her derste bu markalara özel notlar bulunuyor. Bir marka seçersen derslerde yalnızca o markanın notları görünür.</p>' +
+      '<div class="kart marka-tercih"><strong>Derslerde göster:</strong>' + markaSecici() + '</div>' +
+      '<div class="marka-izgara">' + ['samsung', 'apple'].map(function (k) {
+        var b = TA.markalar[k];
+        return '<a class="kart marka-kart ' + k + (m === k ? ' secili' : '') + '" href="#/marka/' + k + '">' + MARKA_LOGO[k] +
+          '<h2>' + b.ad + ' bölümü</h2><p>' + kacis(b.slogan) + '</p><ul>' + b.bolumler.map(function (x) { return '<li>' + kacis(x.baslik) + '</li>'; }).join('') + '</ul><span class="dugme">İncele →</span></a>';
+      }).join('') + '</div>';
+  }
+
+  function sekmeliSayfa(ust, b, kok) {
+    return '<div class="marka-sayfa">' + ust +
+      '<nav class="icindekiler" aria-label="Bölümler">' + b.bolumler.map(function (x, i) { return '<a href="#' + kok + '-' + i + '" data-kaydir>' + kacis(x.baslik) + '</a>'; }).join('') + '</nav>' +
+      b.bolumler.map(function (x, i) { return '<section class="kart marka-bolum" id="' + kok + '-' + i + '"><h2>' + kacis(x.baslik) + '</h2>' + x.html + '</section>'; }).join('') + '</div>';
+  }
+  function markaSayfasi(k) {
+    var b = TA.markalar[k]; if (!b) return bulunamadi();
+    var diger = k === 'samsung' ? 'apple' : 'samsung';
+    return ekmek([['Markalar', '#/markalar'], [b.ad]]) +
+      sekmeliSayfa('<div class="marka-baslik ' + k + '">' + MARKA_LOGO[k] + '<h1>' + b.ad + ' tamir rehberi</h1><p>' + kacis(b.slogan) + '. Model ayrıntıları zamanla değişir; sökmeden önce modelinin güncel rehberini kontrol et.</p>' +
+        '<button type="button" class="dugme ' + (markaOku() === k ? 'ikincil' : '') + '" data-marka-sec="' + (markaOku() === k ? '' : k) + '">' + (markaOku() === k ? '✓ Derslerde ' + b.ad + ' notları gösteriliyor' : 'Derslerde sadece ' + b.ad + ' notlarını göster') + '</button></div>', b, 'mb') +
+      '<div class="dugme-satiri"><a class="dugme ikincil" href="#/markalar">← Markalar</a><a class="dugme ikincil" href="#/marka/' + diger + '">' + TA.markalar[diger].ad + ' bölümü →</a></div>';
+  }
+
+  function yazilimSayfasi(k) {
+    if (!k) {
+      return ekmek([['Yazılım']]) + '<h1>Yazılım alanı</h1><p class="soluk">Donanım arızası sanılan birçok sorun aslında yazılımdan kaynaklanır. İşletim sistemine göre teşhis, kurtarma ve güvenli yazılım yükleme.</p>' +
+        '<div class="marka-izgara">' + [['android', '🤖', 'Samsung, Xiaomi, Oppo ve diğerleri'], ['ios', '', 'iPhone ve iPad']].map(function (x) {
+          var b = TA.yazilimAlani[x[0]];
+          return '<a class="kart marka-kart os-' + x[0] + '" href="#/yazilim/' + x[0] + '"><span class="os-ikon">' + (x[0] === 'ios' ? MARKA_LOGO.apple : x[1]) + '</span><h2>' + b.ad + '</h2><p>' + kacis(x[2]) + '</p><p class="soluk">' + kacis(b.ozet) + '</p><ul>' +
+            b.bolumler.map(function (s) { return '<li>' + kacis(s.baslik) + '</li>'; }).join('') + '</ul><span class="dugme">Aç →</span></a>';
+        }).join('') + '</div><p class="soluk" style="margin-top:18px">İlgili modül: <a href="#/modul/yazilim">Modül 7: Yazılım Tarafı</a></p>';
+    }
+    var b = TA.yazilimAlani[k]; if (!b) return bulunamadi();
+    var diger = k === 'android' ? 'ios' : 'android';
+    return ekmek([['Yazılım', '#/yazilim'], [b.ad]]) +
+      sekmeliSayfa('<div class="marka-baslik os-' + k + '"><h1>' + b.ad + ' yazılım rehberi</h1><p>' + kacis(b.ozet) + '</p></div>', b, 'yb') +
+      '<div class="dugme-satiri"><a class="dugme ikincil" href="#/yazilim">← Yazılım alanı</a><a class="dugme ikincil" href="#/yazilim/' + diger + '">' + TA.yazilimAlani[diger].ad + ' →</a></div>';
   }
 
   // ---------- MODÜL ----------
@@ -205,7 +278,7 @@
       '<div class="ders-ilerleme">' + ic.dersler.map(function (_, k) { return '<span class="' + (k < i ? 'gecti' : k === i ? 'su' : '') + '"></span>'; }).join('') + '</div>' +
       '<div class="ders-meta">Modül ' + m.no + ' · Ders ' + (i + 1) + ' / ' + ic.dersler.length + ' · ' + ders.sure + ' dk' +
       (bitti ? ' · <span class="rozet tamam">Tamamlandı</span>' : '') + '</div>' +
-      '<h1>' + kacis(ders.baslik) + '</h1>' + video + ders.html +
+      '<h1>' + kacis(ders.baslik) + '</h1>' + video + ders.html + markaKart(mid, did) +
       '<div class="dugme-satiri">' +
       (onceki ? '<a class="dugme ikincil" href="#/ders/' + mid + '/' + onceki.id + '">← ' + kacis(onceki.baslik) + '</a>' : '<span></span>') +
       ileri + '</div></div></article></div>';
@@ -433,7 +506,13 @@
       '<p>İlerlemen yalnızca bu cihazda saklanır. Hesap ya da sunucu yoktur. Uygulamayı telefonuna kurabilir, internet olmadan da kullanabilirsin.</p>' +
       '<div class="kutu uyari"><span class="kutu-ikon">!</span><div><p>Buradaki bilgiler eğitim amaçlıdır. Cihazını açmak garantiyi bozabilir. Batarya ve elektrikle ilgili işlemler risklidir. Tüm işlemler senin sorumluluğundadır. Sertifika, bu çevrimiçi eğitimin tamamlandığını gösterir; resmî bir mesleki yeterlilik belgesi değildir.</p></div></div>' +
       '<h2>İlerlemeyi sıfırla</h2><p>Tamamlanan dersleri, sınav sonuçlarını ve sertifika bilgisini siler.</p>' +
-      '<button class="dugme ikincil" id="sifirla" type="button">İlerlemeyi sıfırla</button></div>';
+      '<button class="dugme ikincil" id="sifirla" type="button">İlerlemeyi sıfırla</button>' +
+      '<h2>Görsel kaynakları</h2><p class="soluk">Fotoğraflar Wikimedia Commons\'tan, belirtilen serbest lisanslarla kullanılmıştır. Bazıları yeniden boyutlandırılmıştır.</p><ul class="kaynak-listesi">' +
+      Object.keys(TA.fotoKaynak || {}).map(function (k) {
+        var f = TA.fotoKaynak[k];
+        return '<li><a href="' + kacis(f.kaynak) + '" target="_blank" rel="noopener">' + kacis(f.eser) + '</a>: ' + kacis(f.yazar) + ', ' +
+          (f.lisansUrl ? '<a href="' + kacis(f.lisansUrl) + '" target="_blank" rel="noopener">' + kacis(f.lisans) + '</a>' : kacis(f.lisans)) + '</li>';
+      }).join('') + '</ul></div>';
   }
 
   function bulunamadi() {
@@ -486,7 +565,10 @@
     else if (p[0] === 'sertifika') { html = sertifikaSayfasi(); baslik = 'Sertifika'; nav = 'sertifika'; }
     else if (p[0] === 'araclar') { html = araclarSayfasi(); baslik = 'Araçlar'; nav = 'araclar'; }
     else if (p[0] === 'arac' && p[1]) { html = aracSayfasi(p[1]); baslik = 'Araçlar'; nav = 'araclar'; }
-    else if (p[0] === 'sozluk') { html = sozlukSayfasi(); baslik = 'Sözlük'; nav = 'sozluk'; }
+    else if (p[0] === 'sozluk') { html = sozlukSayfasi(); baslik = 'Sözlük'; nav = 'araclar'; }
+    else if (p[0] === 'markalar') { html = markalarSayfasi(); baslik = 'Markalar'; nav = 'markalar'; }
+    else if (p[0] === 'marka' && p[1]) { html = markaSayfasi(p[1]); baslik = TA.markalar[p[1]] ? TA.markalar[p[1]].ad : 'Marka'; nav = 'markalar'; }
+    else if (p[0] === 'yazilim') { html = yazilimSayfasi(p[1]); baslik = p[1] && TA.yazilimAlani[p[1]] ? TA.yazilimAlani[p[1]].ad + ' yazılım' : 'Yazılım'; nav = 'yazilim'; }
     else html = bulunamadi();
 
     main.innerHTML = html;
@@ -504,6 +586,10 @@
   }
 
   main.addEventListener('click', function (e) {
+    var ms = e.target.closest('[data-marka-sec]');
+    if (ms) { var y = window.scrollY; markaYaz(ms.getAttribute('data-marka-sec')); yonlendir(); window.scrollTo(0, y); return; }
+    var kd = e.target.closest('[data-kaydir]');
+    if (kd) { e.preventDefault(); var hedef = document.getElementById(kd.getAttribute('href').slice(1)); if (hedef) hedef.scrollIntoView({ behavior: 'smooth' }); return; }
     var a = e.target.closest('[data-bitir]');
     if (a) {
       var p = (location.hash || '').slice(1).split('/').filter(Boolean);

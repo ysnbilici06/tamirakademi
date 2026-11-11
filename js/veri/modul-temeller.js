@@ -109,6 +109,8 @@ TA.icerik.temeller = {
 <p><strong>Batarya duman çıkarırsa:</strong> Cihazı metal bir tepsiyle ya da maşayla yanıcı olmayan bir yüzeye (beton zemin, kum kovası) taşı. Dumanı soluma ve ortamı havalandır. Lityum-iyon bataryada alevi bastırmak ve hücreyi soğutmak için bol su kullanılabilir. Alev söndükten sonra da batarya yeniden tutuşabilir, bu yüzden saatlerce gözetim altında tut. Eldivensiz dokunma.</p>
 </div></div>
 
+<div data-bilesen="foto" data-ad="sisik-batarya" data-alt="Şişerek kasayı ve ekranı yerinden itmiş bir iPhone 3GS bataryası" data-aciklama="Şişmiş batarya: Ekranı yerinden itecek kadar büyüyebilir. Böyle bir bataryayı şarj etme ve delme."></div>
+
 <h2>Yapışkanlı bataryalar</h2>
 <p>Çoğu modern cihazda batarya, çekme bantlı (stretch-release) yapışkanla ya da güçlü bir yapıştırıcıyla kasaya tutturulur.</p>
 <ul>
@@ -169,6 +171,8 @@ TA.icerik.temeller = {
   <div class="alet"><strong>İzopropil alkol (%99)</strong><span>Yapıştırıcı çözmek ve kartı temizlemek için. %70'lik içerdiği su nedeniyle uygun değildir.</span><em>BAŞLANGIÇ</em></div>
 </div>
 
+<div data-bilesen="foto" data-ad="spudger" data-alt="Kırmızı plastik spudger" data-aciklama="Spudger: Konnektörleri ayırmak ve klipsleri açmak için kullanılan, elektriği iletmeyen plastik çubuk."></div>
+
 <h2>Orta seviye</h2>
 <div class="alet-izgara">
   <div class="alet"><strong>Isı tabancası / iOpener</strong><span>Yapıştırıcıyı yumuşatmak için. Düşük ayarda ve hareket ettirerek kullan.</span><em>ORTA</em></div>
@@ -177,6 +181,8 @@ TA.icerik.temeller = {
   <div class="alet"><strong>Ekran ayırma plakası</strong><span>Ekranı kontrollü ve eşit ısıtarak ayırır.</span><em>ORTA</em></div>
   <div class="alet"><strong>B-7000 / T-7000 yapıştırıcı</strong><span>Ekran ve arka cam montajı için esnek yapıştırıcı.</span><em>ORTA</em></div>
 </div>
+
+<div data-bilesen="foto" data-ad="isi-tabancasi" data-alt="Sıcak hava tabancası" data-aciklama="Isı tabancası: Ekran ve arka cam yapıştırıcısını yumuşatır. Telefonda en düşük ayarda, hareket ettirerek kullan."></div>
 
 <h2>İleri seviye</h2>
 <div class="alet-izgara">

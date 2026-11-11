@@ -301,8 +301,9 @@ html { -webkit-tap-highlight-color: transparent; -webkit-text-size-adjust: 100%;
   .secenek { min-height: 48px; }
   .ders-yan > .dugme { width: 100%; }
 }
+.logo img { display: block; border-radius: 9px; }
 @media (max-width: 350px) {
-  .logo svg { display: none; }
+  .logo img { display: none; }
 }
 
 @media (max-width: 760px) {
@@ -543,4 +544,78 @@ fieldset.soru legend { display: flex; gap: 10px; font-weight: 600; margin-bottom
 }
 @media (prefers-reduced-motion: reduce) {
   .patlat .pk, .katman, .cn-titre, .cn-yukari { animation: none; }
+}
+
+/* =================== v3: fotoğraflar, markalar, yazılım =================== */
+figure.foto { margin: 20px 0; border-radius: 12px; overflow: hidden; background: var(--yuzey-2); border: 1px solid var(--cizgi); }
+figure.foto img { display: block; width: 100%; height: auto; max-height: 460px; object-fit: cover; }
+figure.foto figcaption { padding: 10px 14px; font-size: .9rem; display: grid; gap: 2px; }
+figure.foto .kredi { color: var(--metin-2); font-size: .72rem; }
+figure.foto .kredi a { color: inherit; }
+
+.cn-sahne.cn-ikili { display: grid; grid-template-columns: 1fr 1fr; gap: 0; align-items: stretch; }
+.cn-ikili figure.cn-foto { margin: 0; border: 0; border-radius: 0; display: flex; flex-direction: column; }
+.cn-ikili figure.cn-foto img { flex: 1; max-height: 260px; min-height: 180px; }
+.cn-ikili figure.cn-foto figcaption { padding: 4px 8px; }
+.cn-cizim { display: flex; align-items: center; }
+
+.marka-logo { display: inline-flex; align-items: center; gap: 5px; font-weight: 800; letter-spacing: .02em; font-size: .9rem; padding: 4px 10px; border-radius: 8px; }
+.marka-logo.samsung { background: #1428a0; color: #fff; letter-spacing: .14em; font-size: .8rem; }
+.marka-logo.apple { background: #1d1d1f; color: #fff; }
+:root[data-theme="dark"] .marka-logo.apple { background: #f5f5f7; color: #1d1d1f; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .marka-logo.apple { background: #f5f5f7; color: #1d1d1f; } }
+
+.marka-secici { display: inline-flex; background: var(--yuzey-2); border-radius: 10px; padding: 3px; gap: 2px; }
+.marka-secici button { font: inherit; font-weight: 600; font-size: .88rem; border: 0; background: none; color: var(--metin-2); padding: 7px 14px; border-radius: 8px; cursor: pointer; }
+.marka-secici button[aria-checked="true"] { background: var(--yuzey); color: var(--vurgu); box-shadow: var(--golge); }
+.marka-secici.kucuk button { padding: 5px 10px; font-size: .8rem; }
+
+.marka-notlari { margin-top: 28px; padding-top: 6px; border-top: 2px dashed var(--cizgi); }
+.marka-notlari-ust { display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; align-items: center; margin: 14px 0 6px; }
+.marka-notlari-ust h2 { margin: 0 !important; font-size: 1.15rem; }
+.marka-not { border-radius: 12px; padding: 14px 16px; margin-top: 10px; border: 1px solid var(--cizgi); border-left: 5px solid #1428a0; background: color-mix(in srgb, #1428a0 6%, var(--yuzey)); }
+.marka-not.apple { border-left-color: #8e8e93; background: color-mix(in srgb, #8e8e93 8%, var(--yuzey)); }
+.marka-not p { margin: 8px 0 0; }
+
+.marka-tercih { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 18px; }
+.marka-izgara { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+.marka-izgara.kucuk { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.marka-kart { color: inherit; text-decoration: none; display: flex; flex-direction: column; gap: 8px; align-items: flex-start; border-top: 4px solid #1428a0; transition: transform .15s; }
+.marka-kart:hover { transform: translateY(-2px); }
+.marka-kart.apple { border-top-color: #8e8e93; }
+.marka-kart.os-android { border-top-color: #3ddc84; }
+.marka-kart.os-ios { border-top-color: var(--vurgu); }
+.marka-kart.secili { box-shadow: 0 0 0 2px var(--vurgu); }
+.marka-kart h2, .marka-kart h3 { margin: 4px 0 0; }
+.marka-kart p { margin: 0; color: var(--metin-2); }
+.marka-kart ul { margin: 0; padding-left: 1.2em; color: var(--metin-2); font-size: .92rem; flex: 1; }
+.os-ikon { font-size: 1.6rem; display: inline-flex; align-items: center; gap: 8px; }
+
+.marka-sayfa { max-width: 900px; margin: 0 auto; }
+.marka-baslik { padding: 26px; border-radius: var(--radius); margin-bottom: 14px; color: #fff; background: linear-gradient(135deg, #1428a0, #0a84ff); }
+.marka-baslik.apple { background: linear-gradient(135deg, #1d1d1f, #4a4a50); }
+.marka-baslik.os-android { background: linear-gradient(135deg, #0b7a43, #3ddc84); }
+.marka-baslik.os-ios { background: linear-gradient(135deg, #1d1d1f, #0a84ff); }
+.marka-baslik h1 { margin: 10px 0 6px; }
+.marka-baslik p { opacity: .9; }
+.marka-baslik .marka-logo { background: rgba(255,255,255,.18); color: #fff; }
+.marka-baslik .dugme { background: #fff; color: #1c2330; }
+.marka-baslik .dugme.ikincil { background: rgba(255,255,255,.15); color: #fff; border-color: rgba(255,255,255,.4); }
+.icindekiler { display: flex; gap: 8px; overflow-x: auto; padding: 4px 0 12px; scrollbar-width: thin; }
+.icindekiler a { flex: none; padding: 7px 14px; border-radius: 99px; background: var(--yuzey); border: 1px solid var(--cizgi); color: var(--metin); text-decoration: none; font-size: .88rem; font-weight: 600; }
+.icindekiler a:hover { border-color: var(--vurgu); color: var(--vurgu); }
+.marka-bolum { margin-bottom: 14px; scroll-margin-top: 76px; }
+.marka-bolum h2 { margin-top: 0; }
+.marka-bolum ul, .marka-bolum ol { padding-left: 1.3em; }
+.marka-bolum li { margin-bottom: .4em; }
+.kaynak-listesi { font-size: .82rem; color: var(--metin-2); padding-left: 1.2em; }
+.kaynak-listesi li { margin-bottom: 4px; }
+
+@media (max-width: 760px) {
+  .alt-sekme { grid-template-columns: repeat(5, 1fr); }
+  .alt-sekme svg { width: 46px; padding: 2px 11px; }
+  .alt-sekme a { font-size: .68rem; }
+  .cn-sahne.cn-ikili { grid-template-columns: 1fr; }
+  .cn-ikili figure.cn-foto img { max-height: 200px; }
+  .marka-baslik { padding: 18px; }
 }

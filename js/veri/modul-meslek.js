@@ -73,6 +73,7 @@ TA.icerik.meslek = {
       baslik: 'İşe başlamak: yol haritası',
       sure: 8,
       html: `
+<div data-bilesen="foto" data-ad="kurs-afisi" data-alt="Hindistan, Bangalor'da bir telefon tamiri kursu afişi" data-aciklama="Dünyanın her yerinde telefon tamiri, kısa sürede öğrenilip meslek hâline getirilebilen bir zanaat."></div>`
 <ol class="adimlar">
   <li><strong>Pratik yap:</strong> Hurda cihazlarla en az 20-30 söküm yap. Hız ve özgüven pratikle gelir.</li>
   <li><strong>Çevrene hizmet ver:</strong> Aile ve arkadaşların cihazlarıyla başla. Basit işlerden (batarya, soket temizliği) zora git.</li>
