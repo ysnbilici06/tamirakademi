@@ -1,3 +1,7 @@
 Thumbs.db
 .DS_Store
 *.bak
+masaustu/dist/
+masaustu/build/
+masaustu/ikon.ico
+__pycache__/

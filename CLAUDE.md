@@ -18,14 +18,18 @@ All identifiers, comments, UI text and lesson content are in Turkish (e.g. `iler
 Scripts load in order from `index.html`, sharing one global namespace `window.TA`:
 
 1. `js/veri/moduller.js` defines `TA.moduller` (the 8-module catalog: `id`, `no`, `baslik`, `ozet`) and an empty `TA.icerik`.
-2. `js/veri/modul-<id>.js` files each register content as `TA.icerik[<id>] = { dersler: [...], quiz: [...] }`. Only `modul-temeller.js` exists so far; a module without an entry in `TA.icerik` is automatically shown as "Yakında" (locked) on the home page.
-3. `js/app.js` is an IIFE that renders everything into `<main id="uygulama">` as HTML strings, routed by `location.hash`:
-   `#/` home · `#/modul/<mid>` · `#/ders/<mid>/<did>` · `#/quiz/<mid>` · `#/hakkinda`.
+2. `js/veri/modul-<id>.js` files (all 8 exist) each register content as `TA.icerik[<id>] = { dersler: [...], quiz: [...] }`.
+3. `js/veri/canlandirmalar.js` (`TA.canlandirmalar`: step-by-step SVG animations) and `js/veri/sozluk.js` (`TA.sozluk` glossary, `TA.bilgiler` "did you know" facts).
+4. `js/bilesenler.js` defines `TA.bilesenKur(root)`, which mounts interactive widgets placed in lesson HTML as `<div data-bilesen="teshis|anakart|multimetre|canlandirma|video" ...>` (`canlandirma` takes `data-ad`, `video` takes `data-youtube`). The diagnosis-wizard tree (`T`), board parts and multimeter readings live in this file.
+5. `js/app.js` is an IIFE that renders everything into `<main id="uygulama">` as HTML strings, routed by `location.hash`:
+   `#/` home · `#/modul/<mid>` · `#/ders/<mid>/<did>` · `#/quiz/<mid>` · `#/final` · `#/sertifika` · `#/araclar` · `#/arac/<ad>` · `#/sozluk` · `#/hakkinda`.
+
+Completion rules: a module is complete when all its lessons are done and its quiz best score is ≥ 70% (`GECME_MODUL`). The final exam (20 random questions from all module quizzes, `GECME_FINAL` 75%) unlocks when all modules are complete; passing it unlocks the certificate (SVG, downloadable as PNG or printed as A4 landscape). Certificate number is a hash of name + final-pass date.
 
 Data shapes:
-- Lesson: `{ id, baslik, sure /* minutes */, html /* template string */ }`. Lesson `html` is trusted and injected raw; titles and quiz text go through `kacis()` for escaping.
+- Lesson: `{ id, baslik, sure /* minutes */, html /* template string */, video? /* YouTube id */ }`. Lesson `html` is trusted and injected raw; titles and quiz text go through `kacis()` for escaping.
 - Quiz question: `{ soru, secenekler: [...], dogru /* index */, aciklama }`.
-- Progress (`localStorage['ta-ilerleme']`): `{ biten: { "<mid>/<did>": true }, quiz: { <mid>: correctCount } }`. Lesson completion is recorded by clicking a link with the `data-bitir` attribute. Theme choice is stored in `ta-tema` and applied by an inline script in `index.html` before first paint.
+- Progress (`localStorage['ta-ilerleme']`): `{ biten: { "<mid>/<did>": true }, quiz: { <mid>: bestCorrectCount }, final: { puan, toplam, tarih }, ad }`. Lesson completion is recorded by clicking a link with the `data-bitir` attribute. Theme choice is stored in `ta-tema` and applied by an inline script in `index.html` before first paint.
 
 Lesson HTML uses CSS classes from `css/style.css`: callout boxes `<div class="kutu ipucu|uyari|tehlike|not"><span class="kutu-ikon">…</span><div>…</div></div>`, numbered steps `<ol class="adimlar">`, tool grid `.alet-izgara > .alet`, and inline SVG diagrams in `<figure class="cizim">`. SVGs should color via CSS variables (`currentColor`, `var(--vurgu)`, `var(--uyari)`, `var(--tehlike)`) so they work in both themes.
 
