@@ -1,0 +1,47 @@
+// Terimler sözlüğü ve "Bunu biliyor muydun?" bilgileri
+TA.sozluk = [
+  ['Alt bord', 'Şarj soketi, mikrofon gibi parçaları taşıyan, anakarta flex ile bağlanan küçük kart.'],
+  ['Anakart', 'Cihazın işlemci, bellek ve kontrol devrelerini taşıyan ana kartı.'],
+  ['Arka ışık (backlight)', 'LCD ekranları arkadan aydınlatan ışık katmanı. OLED\'de bulunmaz.'],
+  ['BGA', 'Ball Grid Array. Çipin altındaki lehim bilyeleriyle karta bağlanma yöntemi.'],
+  ['BMS', 'Bataryanın üzerindeki koruma devresi. Aşırı şarj, aşırı deşarj ve kısa devreyi engeller.'],
+  ['Bootloop', 'Cihazın açılış logosunda sürekli yeniden başlaması.'],
+  ['Boardview', 'Parçaların kart üzerindeki fiziksel yerini gösteren harita yazılımı.'],
+  ['Digitizer', 'Ekrandaki dokunmatik algılayıcı katman.'],
+  ['Diyot modu', 'Multimetrede bir hattın toprağa göre değerini ölçerek karşılaştırma yapmaya yarayan mod.'],
+  ['ESD', 'Elektrostatik boşalma. Hassas devreleri gözle görünmeden bozabilen statik elektrik.'],
+  ['Flex kablo', 'İnce plastik film üzerine basılmış esnek devre kablosu.'],
+  ['Flux', 'Lehimlemede oksidi temizleyen ve lehimin akmasını sağlayan malzeme.'],
+  ['FRP', 'Factory Reset Protection. Sıfırlanan Android cihazın önceki hesap olmadan kullanılmasını engeller.'],
+  ['IMEI', 'Her telefonun şebekede kullandığı benzersiz kimlik numarası.'],
+  ['İzopropil alkol (%99)', 'Elektronik temizliğinde ve yapıştırıcı çözmede kullanılan, hızla buharlaşan alkol.'],
+  ['Kalkan (shield)', 'Anakart üzerindeki hassas bölgeleri parazitten koruyan metal kapak.'],
+  ['Kısa devre', 'Bir gerilim hattının doğrudan toprağa bağlanması. Isınmaya ve açılmamaya yol açar.'],
+  ['Konnektör', 'Flex kabloların anakarta basılarak takıldığı bağlantı noktası.'],
+  ['LCI', 'Sıvı teması göstergesi. Islanınca kırmızıya döner.'],
+  ['Mikro lehim', 'Mikroskop altında çok küçük parçaların lehimlenmesi.'],
+  ['NAND / UFS', 'Cihazın kalıcı depolama belleği.'],
+  ['OIS', 'Optik görüntü sabitleme. Kamera lensini titreşime karşı hareket ettirir.'],
+  ['OLED', 'Her pikselin kendi ışığını ürettiği ekran teknolojisi.'],
+  ['Pentalobe', 'Beş köşeli, özel vida başı tipi.'],
+  ['Pick', 'Yapıştırıcıyı kesmek için kullanılan ince plastik açma kartı.'],
+  ['PMIC', 'Güç yönetim entegresi. Gerilimleri parçalara dağıtır.'],
+  ['Reball', 'Bir BGA çipin altındaki lehim bilyelerinin yenilenmesi.'],
+  ['SoC', 'System on Chip. İşlemci, grafik ve diğer birimleri barındıran ana çip.'],
+  ['Spudger', 'Konnektör ayırmak için kullanılan iletken olmayan çubuk.'],
+  ['Süreklilik', 'İki nokta arasında iletim olup olmadığını gösteren, bip sesli multimetre modu.'],
+  ['Termal kamera', 'Isınan parçaları görüntüleyerek kısa devre bulmaya yarayan kamera.'],
+  ['Tri-point', 'Üç kanatlı, özel vida başı tipi.'],
+  ['VBUS', 'Şarj soketinden gelen besleme hattı.']
+];
+
+TA.bilgiler = [
+  'Bir insan ancak 3.000 voltun üzerindeki statik boşalmayı hisseder; bir entegre ise birkaç yüz voltla bozulabilir.',
+  'Islanan telefonu pirince koymak korozyonu durdurmaz. Doğrusu bataryayı ayırıp kartı alkolle temizlemektir.',
+  'Telefon anakartları 8-12 katmanlı olabilir; bazı modellerde iki kart sandviç gibi üst üste lehimlenir.',
+  'Yanlış deliğe takılan 1 mm uzun bir vida, anakartın iç katmanlarını delip onarılamaz hasar verebilir.',
+  '"Şarj olmuyor" şikâyetlerinin önemli bir kısmı yalnızca sokete sıkışmış cep tüylerinden kaynaklanır.',
+  'OLED ekranlarda siyah, pikselin tamamen kapalı olması demektir; bu yüzden karanlık temada pil daha az harcanır.',
+  'Kamera sallanınca gelen tıkırtı çoğu zaman arıza değil, serbest kalan optik sabitleyici (OIS) mıknatıslarıdır.',
+  'Kısa devreyi bulmanın en eski yollarından biri: karta alkol sürmek ve ilk kuruyan noktaya bakmak.'
+];

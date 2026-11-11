@@ -1,6 +1,6 @@
 // Çevrimdışı çalışma: uygulama dosyalarını önbelleğe alır.
 // İçerik güncellendiğinde SURUM değerini artır; telefonlar yeni sürümü indirir.
-var SURUM = 'ta-v1';
+var SURUM = 'ta-v2';
 var DOSYALAR = [
   './',
   'index.html',
@@ -9,6 +9,16 @@ var DOSYALAR = [
   'js/app.js',
   'js/veri/moduller.js',
   'js/veri/modul-temeller.js',
+  'js/veri/modul-anatomi.js',
+  'js/veri/modul-teshis.js',
+  'js/veri/modul-sokum.js',
+  'js/veri/modul-tamirler.js',
+  'js/veri/modul-ileri.js',
+  'js/veri/modul-yazilim.js',
+  'js/veri/modul-meslek.js',
+  'js/veri/canlandirmalar.js',
+  'js/veri/sozluk.js',
+  'js/bilesenler.js',
   'ikonlar/ikon-192.png',
   'ikonlar/ikon-512.png',
   'ikonlar/ikon-maskable-512.png',
